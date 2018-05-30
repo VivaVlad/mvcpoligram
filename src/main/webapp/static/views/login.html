@@ -1,0 +1,28 @@
+
+<h1>Увійти</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<form action="/login" method="post" class="form-horizontal">
+			<div class="input-group input-sm">
+				<label class="input-group-addon" for="username"><span class="glyphicon glyphicon-user" ></span></label>
+				<input type="text" class="form-control" id="username" name="username"
+					   placeholder="Введіть ім'я користувача" required>
+			</div>
+			<div class="input-group input-sm">
+				<label class="input-group-addon" for="password"><span class="glyphicon glyphicon-lock"></span></label>
+				<input type="password" class="form-control" id="password" name="password"
+					   placeholder="Введіть пароль" required>
+			</div>
+			<div class="input-group input-sm">
+			  <div class="checkbox">
+				<label><input type="checkbox" id="rememberme" name="remember-me"> Запам'ятати мене</label>
+			  </div>
+			</div>
+			<div class="form-actions">
+				<input type="submit"
+					class="btn btn-block btn-primary btn-default" value="Увійти">
+			</div>
+		</form>
+		<p>Новий користувач?<a href="#/registration">Зареєструйтесь зараз!</a></p>
+	</div>
+</div>

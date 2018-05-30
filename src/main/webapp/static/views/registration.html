@@ -1,0 +1,46 @@
+<h1>Зареєструватись</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-success" role="alert" ng-if="UserCtrl.successMessage">Користувач успішно створений. Увійдіть у свій обліковий запис </div>
+        <div class="alert alert-danger" role="alert" ng-if="UserCtrl.errorMessage">{{UserCtrl.errorMessage}}</div>
+        <form ng-submit="UserCtrl.submit()" name="myForm">
+            <input type="hidden" ng-model="UserCtrl.user.id" />
+            <input type="hidden" ng-model="UserCtrl.user.profile.id" ng-init="UserCtrl.user.profile.id=1"/>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2 control-lable" for="username">Ім'я</label>
+                    <div class="col-md-7">
+                        <input type="text" ng-model="UserCtrl.user.username" id="username"
+                               class="username form-control" placeholder="Введіть ім'я" required ng-minlength="3"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2 control-lable" for="email">Пошта</label>
+                    <div class="col-md-7">
+                        <input type="email" ng-model="UserCtrl.user.email" id="email"
+                               class="form-control" placeholder="Введіть адресу ел. пошти" required ng-pattern="UserCtrl.validEmail"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2 control-lable" for="password">Пароль</label>
+                    <div class="col-md-7">
+                        <input type="password" ng-model="UserCtrl.user.password" id="password"
+                               class="form-control" placeholder="Введіть пароль"
+                               required ng-minlength="6"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit"  value="{{!UserCtrl.user.id ? 'Зареєструватись' : 'Update'}}" class="btn btn-primary" ng-disabled="myForm.$invalid || myForm.$pristine">
+                <button type="button" ng-click="UserCtrl.reset()" class="btn btn-warning" ng-disabled="myForm.$pristine">Скинути форму</button>
+            </div>
+        </form>
+    </div>
+</div>

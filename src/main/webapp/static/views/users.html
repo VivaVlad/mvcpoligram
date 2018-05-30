@@ -1,0 +1,99 @@
+<div class="generic-container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Новий користувач </span></div>
+		<div class="panel-body">
+	        <div class="formcontainer">
+	            <div class="alert alert-success" role="alert" ng-if="UserCtrl.successMessage">{{UserCtrl.successMessage}}</div>
+	            <div class="alert alert-danger" role="alert" ng-if="UserCtrl.errorMessage">{{UserCtrl.errorMessage}}</div>
+	            <form ng-submit="UserCtrl.submit()" name="myForm" class="form-horizontal">
+	                <input type="hidden" ng-model="UserCtrl.user.id" />
+	                <div class="row">
+	                    <div class="form-group col-md-12">
+	                        <label class="col-md-2 control-lable" for="username">Ім'я</label>
+	                        <div class="col-md-7">
+	                            <input type="text" ng-model="UserCtrl.user.username" id="username"
+									   class="username form-control" placeholder="Введіть ім'я" required ng-minlength="3"/>
+	                        </div>
+	                    </div>
+	                </div>
+
+	                <div class="row">
+	                    <div class="form-group col-md-12">
+	                        <label class="col-md-2 control-lable" for="email">Пошта</label>
+	                        <div class="col-md-7">
+	                            <input type="email" ng-model="UserCtrl.user.email" id="email"
+									   class="form-control" placeholder="Введіть адресу ел. пошти" required ng-pattern="UserCtrl.validEmail"/>
+	                        </div>
+	                    </div>
+	                </div>
+	
+	                <div class="row">
+	                    <div class="form-group col-md-12">
+	                        <label class="col-md-2 control-lable" for="password">Пароль</label>
+	                        <div class="col-md-7">
+	                            <input type="password" ng-model="UserCtrl.user.password" id="password"
+									   class="form-control" placeholder="Введіть пароль"
+									   required ng-minlength="6"/>
+	                        </div>
+	                    </div>
+	                </div>
+
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-3 control-lable" for="profile">Роль</label>
+								<div class="col-md-7">
+									<select name="profile" id="profile" ng-model="UserCtrl.user.profile.id">
+										<option ng-repeat="option in UserCtrl.availableOptions"
+												ng-value="option.id">{{option.name}}</option>
+									</select>
+								</div>
+						</div>
+					</div>
+
+	                <div class="row">
+	                    <div class="form-actions floatRight">
+	                        <input type="submit"  value="{{!UserCtrl.user.id ? 'Додати' : 'Оновити'}}" class="btn btn-primary" ng-disabled="myForm.$invalid || myForm.$pristine">
+	                        <button type="button" ng-click="UserCtrl.reset()" class="btn btn-warning" ng-disabled="myForm.$pristine">Reset Form</button>
+	                    </div>
+	                </div>
+	            </form>
+    	    </div>
+		</div>	
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Список ористувачів </span></div>
+		<div class="panel-body">
+			<div class="table-responsive">
+		        <table class="table table-hover">
+		            <thead>
+		            <tr>
+		                <th>ID</th>
+		                <th>Ім'я</th>
+		                <th>Пошта</th>
+		                <th>Пароль</th>
+						<th>Роль</th>
+		                <th width="100"></th>
+		                <th width="100"></th>
+		            </tr>
+		            </thead>
+		            <tbody>
+		            <tr ng-repeat="u in UserCtrl.getAllUsers()">
+		                <td>{{u.id}}</td>
+		                <td>{{u.username}}</td>
+		                <td>{{u.email}}</td>
+		                <td>{{u.password}}</td>
+						<td>{{u.profile.type}}</td>
+
+						<td><button type="button" ng-click="UserCtrl.editUser(u.id)"
+									class="btn btn-success">Редагувати</button></td>
+		                <td><button type="button" ng-click="UserCtrl.removeUser(u.id)"
+									class="btn btn-danger">Видалити</button></td>
+		            </tr>
+		            </tbody>
+		        </table>		
+			</div>
+		</div>
+    </div>
+</div>
